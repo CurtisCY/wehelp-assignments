@@ -9,7 +9,7 @@
 }
 
 .hamburger_icon{
-
+    display: none;
     width: 30px;
 }
 
@@ -93,9 +93,9 @@ gallery>.image{
     main>.item{
         display: none;
     }
-    main>.hamburger_icon{
+    /*main>.hamburger_icon{
         display: block;
-    }
+    }*/
 }
 
 
