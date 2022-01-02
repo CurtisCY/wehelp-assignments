@@ -85,7 +85,7 @@ gallery>.image{
     }
 }
 
-@media (max-width: 500px){
+@media (max-width: 600px){
     gallery{
         width:90%;
         justify-content: center;
@@ -93,6 +93,7 @@ gallery>.image{
     main>.item{
         display: none;
     }
+    
     /*main>.hamburger_icon{
         display: block;
     }*/
