@@ -1,3 +1,18 @@
+.image img{
+    width: 280px;
+}
+
+.imageDescripiton{
+    margin:0px;
+    text-align: center;
+    padding: 5px;
+}
+
+.hamburger_icon{
+
+    width: 30px;
+}
+
 main{
     display: flex;
     justify-content: flex-start;
@@ -56,24 +71,24 @@ gallery{
 
 gallery>.image{
 
-    width:280px;
+    width:auto;
     height: auto;
     margin:10px;
     background-color: #b0e0e6;
 }
 
 @media (max-width:1200px){
-    gallery>.image{
-        width:45%;
-    }
-
+    
     gallery{
-        width:45%;
+        width:90%;
+        justify-content: center;
     }
 }
+
 @media (max-width: 500px){
-    gallery>.image{
+    gallery{
         width:90%;
+        justify-content: center;
     }
     main>.item{
         display: none;
