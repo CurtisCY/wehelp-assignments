@@ -1,0 +1,105 @@
+.image img{
+    width: 280px;
+}
+
+.imageDescripiton{
+    margin:0px;
+    text-align: center;
+    padding: 5px;
+}
+
+.hamburger_icon img{
+    display: none;
+    width: 25px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+
+main{
+    display: flex;
+    justify-content: flex-start;
+    background-color:white;
+}
+
+main>.item{
+    flex:none;
+    width: 80px;
+    margin-top: 10px;
+    background-color: white;
+    color:black;
+    font-size:20px;
+}
+main>.logo{
+    flex:auto;
+    margin-left:10px;
+    margin-top: 10px;
+    background-color: white;
+    color:black;
+    font-size:20px;
+    font-weight: bold;
+}
+
+
+banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    margin-top: 15px;
+    background-color: #B0E0E6;
+}
+
+banner>.banner{
+    
+    font-size: 40px;
+    color: black;
+    font-style: Times;
+    text-align: center;
+    font-weight: bold;
+}
+
+gallery{
+    display: flex;
+    width: 1200px;
+    height: auto;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    /*overflow: hidden;*/
+    flex-direction: row;
+    flex-wrap: wrap; /*Important*/
+}
+
+gallery>.image{
+
+    width:auto;
+    height: auto;
+    margin:10px;
+    background-color: #b0e0e6;
+}
+
+@media (max-width:1200px){
+    
+    gallery{
+        width: 90%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px){
+    gallery{
+        width: 90%;
+        justify-content: center;
+    }
+    main>.item{
+        display: none;
+    }
+
+    main>.hamburger_icon img{
+        display: block;
+    }
+}
+
+
