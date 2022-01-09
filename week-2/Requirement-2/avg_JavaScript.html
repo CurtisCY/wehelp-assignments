@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"><meta/>
+        <title>avg function</title>
+        <script type="text/javascript">
+        
+        function avg(data){
+            var employeesNumber = data['count'];
+            var employeesInfo = data['employees'];
+            var sum=0;
+            
+            for (var i=0; i<employeesNumber; i++){
+                personInfo = employeesInfo[i];
+                sum = sum + personInfo['salary']
+            }
+            avgSalary = sum/employeesNumber
+            console.log('員工人數: ' + employeesNumber);
+            console.log('員工平均薪資: ' + avgSalary);
+        }
+
+        avg({
+            "count":3,
+            "employees":[
+                {
+                    "name":"John",
+                    "salary":30000
+                },
+                {
+                    "name":"Bob",
+                    "salary":60000
+                },
+                {
+                    "name":"Jenny",
+                    "salary":50000
+                }
+            ]
+        });
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <title>maxProduct function</title>
+        <script type="text/javascript">
+            
+            function maxProduct(nums){
+                var size = Object.keys(nums).length;
+                
+                for (var k=0;k<size;k++){
+                    console.log('nums['+k+']: '+nums[k]);
+                }
+                
+                for (var i = 0; i<size; i++){
+                    for (var j = 0; j < size-i-1; j++){
+                        if (nums[j] > nums[j+1]){
+                            valueTemp = nums[j+1];
+                            nums[j+1] = nums[j];
+                            nums[j] = valueTemp;
+                        }
+                    }
+                }
+
+                console.log('排序結果: '+nums);
+                console.log('兩數相乘最大值: '+nums[size-2]*nums[size-1]);
+            }
+
+            maxProduct([5, 20, 2, 6]); // Get 120
+            maxProduct([10,-20,0,3]); // Get 30
+            maxProduct([-1,2]); // Get -2
+            maxProduct([-1,0,2]); // Get 0
+
+        </script>
+    </head>
+    <body>
+        
+    </body>
+</html>

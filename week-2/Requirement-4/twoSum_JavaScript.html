@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"></meta>
+        <title>twoSum function</title>
+        <script type="text/javascript">
+            
+            function twoSum(nums, target){
+                var size = Object.keys(nums).length;
+                //console.log('size: '+size);
+
+                let newNums = Object.assign([],nums); // Copy Object
+                //newNums[0] = 99; //Test assign value
+
+                for (var k=0;k<size;k++){
+                    //alert('nums['+k+']: '+nums[k]);
+                }
+
+                for (var l=0;l<size;l++){
+                    //alert('newNums['+l+']: '+newNums[l]);
+                }
+
+                var sum=0;
+                var startValue=0;
+                var firstValue=0;
+                var secondValue=0;
+                var result = [];
+
+                for (var i=0;i<size;i++){
+                    for (var j=1;j<size;j++){
+                        sum = nums[0]+nums[j];
+                        firstValue = nums[0];
+                        secondValue = nums[j];
+                        //console.log(sum);
+                            if (sum == target){
+                                //console.log('第一個索引: '+newNums.indexOf(firstValue))
+                                //console.log('第二個索引: '+newNums.indexOf(secondValue))
+                                result = ([newNums.indexOf(firstValue), newNums.indexOf(secondValue)])
+                                result.sort();
+                                //console.log(result)
+                            }
+                    }
+                    //alert(nums)
+                    //alert('COPY'+newNums)
+                    
+                    startValue = nums[0];
+                    
+                    for (var h=0;h<(size-1);h++){ //Move number inside object 2,11,7,15 / 11,7,15,2 / 7,15,2,11 / 15,2,11,7
+                        nums[h] = nums[h+1];
+                        //console.log('startValue: '+startValue)
+                    }
+                    nums[size-1]=startValue;
+                }
+                return result;
+            }
+            
+            let result=twoSum([2,11,7,15],9);
+            //let result=twoSum([2,11,7,15],26)
+            //let result=twoSum([2,11,7,15],18)
+            //let result=twoSum([2,11,7,15],22)
+            //let result=twoSum([2,11,7,15],17)
+            console.log(result);
+
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
