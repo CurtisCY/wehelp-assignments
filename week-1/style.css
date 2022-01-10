@@ -1,57 +1,58 @@
-.image img{
-    width: 280px;
+
+.top-frame{
+    display: flex; /*讓下一層次項目水平排列*/
+    align-items: center; /*垂直對齊*/
 }
 
-.imageDescripiton{
-    margin:0px;
+.left{
+    flex:none; /*這項目固定配置*/
+    background-color: white;
+    width: 200px;
+    color:black;
+    font-size:20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.middle{
+    flex:auto /*這項目自動配置*/
+}
+
+.right{
+    display:flex; /*讓下一層次項目水平排列*/
+    flex:none; /*這項目固定配置*/
+    justify-content: flex-end;
+    width: 400px;
+    background-color: white;
+    color:black;
+    font-size:20px;
+    margin: 10px;
+}
+
+.item{
+    flex:auto;
     text-align: center;
-    padding: 5px;
 }
 
 .hamburger_icon img{
     display: none;
     width: 25px;
-    margin-top: 10px;
-    margin-right: 10px;
+    margin: 10px;
+
 }
 
 
-main{
-    display: flex;
-    justify-content: flex-start;
-    background-color:white;
-}
-
-main>.item{
-    flex:none;
-    width: 80px;
-    margin-top: 10px;
-    background-color: white;
-    color:black;
-    font-size:20px;
-}
-main>.logo{
-    flex:auto;
-    margin-left:10px;
-    margin-top: 10px;
-    background-color: white;
-    color:black;
-    font-size:20px;
-    font-weight: bold;
-}
 
 
-banner{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.banner{
+    display: flex; /*讓下一層次項目水平排列*/
+    justify-content: center; /*左右對齊*/
+    align-items: center; /*垂直對齊*/
     height: 300px;
-    margin-top: 15px;
     background-color: #B0E0E6;
 }
 
-banner>.banner{
-    
+.banner-text{
     font-size: 40px;
     color: black;
     font-style: Times;
@@ -59,47 +60,73 @@ banner>.banner{
     font-weight: bold;
 }
 
-gallery{
-    display: flex;
+.gallery{
+    display: flex; /*讓下一層次項目水平排列*/
     width: 1200px;
     height: auto;
-    margin-top: 15px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: white;
-    /*overflow: hidden;*/
-    flex-direction: row;
-    flex-wrap: wrap; /*Important*/
+    /*background-color: #ffcccc;*/  /*Debug顯示用*/ 
+    flex-wrap: wrap; 
+    justify-content: center; /*左右對齊*/
+    align-items: center; /*垂直對齊*/
+    margin: auto; /*注意，讓兩邊margin平均，使得div gallery置中*/
 }
 
-gallery>.image{
-
-    width:auto;
+.image{
+    display: block;
+    width: 280px;
+    justify-content: center;
+    align-items: center; /*垂直對齊*/
+    margin: auto;
+    margin-top:10px;
+}
+ 
+.image img{
+    flex: none;
     height: auto;
-    margin:10px;
+    width: 100%;
+    vertical-align: top; /*讓下面的文字描述和圖中間的margin變為0*/
+}
+
+.imageDescripiton{
+    flex: none;
+    text-align: center;
+    width: 100%;
     background-color: #b0e0e6;
 }
 
-@media (max-width:1200px){
-    
-    gallery{
-        width: 90%;
-        justify-content: center;
+@media (max-width: 1200px){
+    .gallery{
+        flex-wrap:wrap;
+        width:auto;    
     }
+    .image{
+        width: 45%;
+    }
+    
 }
 
 @media (max-width: 600px){
-    gallery{
+    .gallery{
+        flex-wrap:wrap;
+        width:auto;    
+    }
+    .image{
         width: 90%;
-        justify-content: center;
     }
-    main>.item{
-        display: none;
+    .item{
+        display:none;
+        flex:auto;
+        text-align: center;
     }
 
-    main>.hamburger_icon img{
+    .right{
+        flex:auto;
+    }
+
+    .hamburger_icon img{
         display: block;
+        width: 25px;
+        margin: 10px;
     }
+    
 }
-
-
