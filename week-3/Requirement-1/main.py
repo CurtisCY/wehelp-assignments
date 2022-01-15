@@ -9,7 +9,7 @@ with request.urlopen(src) as response:
 
 tourAttraction = data['result']['results']
 
-with open('.data.csv','w', newline='') as csvfile:
+with open('data.csv','w', newline='') as csvfile:
     
     writer = csv.writer(csvfile)
     writer.writerow(['景點名稱','區域','經度','緯度','第一張圖檔網址'])
