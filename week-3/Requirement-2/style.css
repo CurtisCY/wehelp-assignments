@@ -74,15 +74,17 @@
 .image{
     display: block;
     width: 280px;
+    height: 231.3px;
     justify-content: center;
     align-items: center; /*垂直對齊*/
     margin: auto;
-    margin-top:10px;
+    margin-top:20px;
+    margin-bottom: 20px;
 }
  
 .image img{
     flex: none;
-    height: auto;
+    height: 100%;
     width: 100%;
     vertical-align: top; /*讓下面的文字描述和圖中間的margin變為0*/
 }

@@ -5,6 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>My Website</title>
     <link href="style.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript">
+        
+        window.onload=function(){
+            let url = "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json";
+            let req = new XMLHttpRequest();
+            console.log(url);
+            req.open( "GET", url);
+            req.onload=function(){
+                // alert(this.responseText);
+                //console.log(JSON.parse(this.responseText));
+                spotArray = JSON.parse(this.responseText);
+                spotArrayInfo = spotArray.result.results;
+                // console.log(spotArrayInfo);
+                // console.log(spotArrayInfo.length);
+
+                for (i = 0 ; i < spotArrayInfo.length ; i++){
+
+                    console.log(spotArrayInfo[i].stitle); //景點名稱
+                    imgLink = spotArrayInfo[i].file; 
+            
+                    //console.log(typeof(imgLink));
+                    const seperator = ".jpg"
+                    imgLinkArray = imgLink.toLowerCase().split(seperator);
+                    //console.log(typeof(imgLinkArray));
+                    console.log(imgLinkArray[0]+".jpg"); //景點照片
+                    
+                    //動態新增景點照片到HTML code
+
+                    //新增照片容器
+                    let newDiv = document.createElement("div");
+                    document.getElementById('gallery').appendChild(newDiv);
+                    newDiv.id="image"+i;
+                    newDiv.className="image";
+                    
+                    //item: 照片
+                    let newImage = document.createElement("img");
+                    newImage.src = imgLinkArray[0]+".jpg";
+                    document.getElementById("image"+i).appendChild(newImage);
+
+                    //item: 照片描述
+                    let newDescription = document.createElement("div");
+                    newDescription.textContent = spotArrayInfo[i].stitle;
+                    document.getElementById("image"+i).appendChild(newDescription);
+                    newDescription.className="imageDescripiton";
+                }
+            }
+            req.send();
+        }
+        
+        function insertImage(){
+
+        }
+
+    </script>
 </head>
 
 <body style="margin: 0px;">
@@ -27,43 +81,8 @@
         <div class="banner-text">Welcome to MyHome</div>
     </div>
 
-    <div class="gallery">
-        
-        <div class="image">
-            <img src="./image/busStop.png" alt="bus stop"/>
-            <div class="imageDescripiton">StradBroke Bus Stop</div>
-        </div>
-        <div class="image">
-            <img src="./image/blueHouse.png" alt="TheBlueHouse"/>
-            <div class="imageDescripiton">The Blue house</div>
-        </div>
-        <div class="image">
-            <img src="./image/lightTower.png" alt="Light Tower"/>
-            <div class="imageDescripiton">Light Tower</div>
-        </div>
-        <div class="image">
-            <img src="./image/crown.png" alt="Crown"/>
-            <div class="imageDescripiton">Crown</div>
-        </div>
-        <div class="image">
-            <img src="./image/train.png" alt="City Train"/>
-            <div class="imageDescripiton">City Train</div>
-        </div>
-        <div class="image">
-            <img src="./image/art.png" alt="Graffiti"/>
-            <div class="imageDescripiton">Graffiti</div>
-        </div>
-        <div class="image">
-            <img src="./image/park.png" alt="Park"/>
-            <div class="imageDescripiton">Park</div>
-        </div>
-        <div class="image">
-            <img src="./image/market.png" alt="Market"/>
-            <div class="imageDescripiton">Market</div>
-        </div>
-        
+    <div class="gallery" id="gallery">
     </div>
-
 
 </body>
 </html>
