@@ -1,3 +1,6 @@
+# Assignment - Week 5
+
+## 要求三：SQL CRUD
 
 **3-1 使用 INSERT 指令新增一筆資料到 member 資料表中，這筆資料的 username 和 password 欄位必須是 test。接著繼續新增至少 4 筆隨意的資料**
 
@@ -51,6 +54,8 @@ UPDATE member SET name='test2' WHERE username='test'
 ~~~
 ![image](https://user-images.githubusercontent.com/63384830/151684024-3fed8909-d51f-46d0-abeb-fac99cadcf2f.png)
 
+## 要求四：SQL Aggregate Functions
+
 **4-1 取得 member 資料表中，總共有幾筆資料 ( 幾位會員 ) **
 
 ~~~mysql
@@ -71,4 +76,21 @@ SELECT SUM(follower_count) AS 追蹤者數量總和 FROM member;
 SELECT AVG(follower_count) AS 會員追蹤者數量平均值 FROM member;
 ~~~
 ![image](https://user-images.githubusercontent.com/63384830/151684426-4f4e12ea-8e8d-4a1d-89b2-915b0fab3557.png)
+
+## 要求五：SQL JOIN (Optional)
+
+**5-1 使用 SELECT 搭配 JOIN 語法，取得所有留言，結果須包含留言者會員的姓名 **
+
+~~~mysql
+SELECT member.id, member.name, message.content FROM member INNER JOIN message ON message.member_id = member.id;
+~~~
+![image](https://user-images.githubusercontent.com/63384830/151684513-fd4da0c6-aa5e-42e8-b2c7-0f06165bde7d.png)
+
+**5-2 使用 SELECT 搭配 JOIN 語法，取得 member 資料表中欄位 username 是 test 的所有留言，資料中須包含留言者會員的姓名 **
+
+~~~mysql
+SELECT member.id, member.name, message.content FROM member INNER JOIN message ON message.member_id = member.id WHERE member.username='test';
+~~~
+![image](https://user-images.githubusercontent.com/63384830/151684540-2b0b7ea2-a32d-4ed8-812c-cbaaf5b9d7e8.png)
+
 
