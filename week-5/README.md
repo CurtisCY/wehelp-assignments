@@ -29,14 +29,15 @@ SELECT * FROM member ORDER BY time DESC;
 **3-4 使用 SELECT 指令取得 member 資料表中第 2 ~ 4 共三筆資料，並按照 time 欄位，由近到遠排序。( 並非編號 2、3、4 的資料，而是排序後的第 2 ~ 4 筆資料 )**
 
 ~~~mysql
-SELECT * FROM member WHERE id BETWEEN 2 AND 4 ORDER BY time DESC;
+SELECT * FROM member ORDER BY time DESC LIMIT 1,3;
 ~~~
-![image](https://user-images.githubusercontent.com/63384830/151683984-266a4b5b-2ea4-4283-9800-101b8b8f4903.png)
+![image](https://user-images.githubusercontent.com/63384830/151685218-2cb6b237-0d57-451b-822f-71e905a6ff7f.png)
 
 **3-5 使用 SELECT 指令取得欄位 username 是 test 的會員資料**
 
 ~~~mysql
-SELECT * FROM member WHERE username='test';
+SELECT * FROM me![Uploading image.png…]()
+mber WHERE username='test';
 ~~~
 ![image](https://user-images.githubusercontent.com/63384830/151684001-7aea0774-83f5-40c3-8292-2c320d0b1880.png)
 
