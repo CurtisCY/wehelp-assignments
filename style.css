@@ -1,0 +1,152 @@
+
+.top-frame{
+    display: flex; /*讓下一層次項目水平排列*/
+    align-items: center; /*垂直對齊*/
+}
+
+.left{
+    flex:none; /*這項目固定配置*/
+    background-color: white;
+    width: 200px;
+    color:black;
+    font-size:20px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.middle{
+    flex:auto /*這項目自動配置*/
+}
+
+.right{
+    display:flex; /*讓下一層次項目水平排列*/
+    flex:none; /*這項目固定配置*/
+    justify-content: flex-end;
+    width: 400px;
+    background-color: white;
+    color:black;
+    font-size:20px;
+    margin: 10px;
+}
+
+.item{
+    flex:auto;
+    text-align: center;
+}
+
+.hamburger_icon img{
+    display: none;
+    width: 25px;
+    margin: 10px;
+
+}
+
+
+
+
+.banner{
+    display: flex; /*讓下一層次項目水平排列*/
+    justify-content: center; /*左右對齊*/
+    align-items: center; /*垂直對齊*/
+    height: 300px;
+    background-color: #B0E0E6;
+}
+
+.banner-text{
+    font-size: 40px;
+    color: black;
+    font-style: Times;
+    text-align: center;
+    font-weight: bold;
+}
+
+.gallery{
+    display: flex; /*讓下一層次項目水平排列*/
+    width: 1200px;
+    height: auto;
+    /*background-color: #ffcccc;*/  /*Debug顯示用*/ 
+    flex-wrap: wrap; 
+    justify-content: center; /*左右對齊*/
+    align-items: center; /*垂直對齊*/
+    margin: auto; /*注意，讓兩邊margin平均，使得div gallery置中*/
+}
+
+.image{
+    display: block;
+    width: 280px;
+    height: 231.3px;
+    justify-content: center;
+    align-items: center; /*垂直對齊*/
+    margin: auto;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+ 
+.image img{
+    flex: none;
+    height: 100%;
+    width: 100%;
+    vertical-align: top; /*讓下面的文字描述和圖中間的margin變為0*/
+}
+
+.imageDescripiton{
+    flex: none;
+    text-align: center;
+    width: 100%;
+    background-color: #b0e0e6;
+}
+
+button{
+    width:140px;
+    height:40px;
+    margin:10px;
+    border: 1px solid #D3D3D3;
+    color: black;
+    vertical-align: top;
+    
+}
+
+.bottom{
+    display:flex;
+    margin: 20px;
+    height: 40px;
+    justify-content: center; /*左右對齊*/
+    align-items: center; /*垂直對齊*/
+}
+
+@media (max-width: 1200px){
+    .gallery{
+        flex-wrap:wrap;
+        width:auto;    
+    }
+    .image{
+        width: 45%;
+    }
+    
+}
+
+@media (max-width: 600px){
+    .gallery{
+        flex-wrap:wrap;
+        width:auto;    
+    }
+    .image{
+        width: 90%;
+    }
+    .item{
+        display:none;
+        flex:auto;
+        text-align: center;
+    }
+
+    .right{
+        flex:auto;
+    }
+
+    .hamburger_icon img{
+        display: block;
+        width: 25px;
+        margin: 10px;
+    }
+    
+}
