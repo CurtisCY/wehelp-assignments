@@ -6,9 +6,11 @@
     <title>My Website</title>
     <link href="style.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript">
-        
 
-        window.onload=function(){
+        //Query image from the remote website. Two arguments are required
+        //startNumber - The start index for the image
+        //count - The total amount of image will be requested. Default - 8
+        function queryWebsite(startNumber, count=8){
             let url = "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json";
             let req = new XMLHttpRequest();
             console.log(url);
@@ -20,14 +22,17 @@
                 spotArrayInfo = spotArray.result.results;
                 // console.log(spotArrayInfo);
                 // console.log(spotArrayInfo.length);
-                
-                
-                for (i = 0 ; i < spotArrayInfo.length ; i++){
-                    
-                    if ((i+1) % 9 != 0){
-                        console.log(i);
-                        console.log(spotArrayInfo[i].stitle); //景點名稱
-                        imgLink = spotArrayInfo[i].file; 
+                console.log("呼叫起始照片位置跟數量",startNumber, count);
+                for (let i=0; i<count; i++){ //0-7, 8-15, 16-23, 24-31, 32-39, 40-47, 48-55, 56-57
+
+                        let index = 0;
+                        index = i + startNumber;
+                        
+                  
+                        console.log("image index: ",index);
+                        console.log("Inside loop index: ",i);
+                        console.log(spotArrayInfo[index].stitle); //景點名稱
+                        imgLink = spotArrayInfo[index].file; 
                 
                         //console.log(typeof(imgLink));
                         const seperator = ".jpg"
@@ -40,42 +45,59 @@
                         //新增照片容器
                         let newDiv = document.createElement("div");
                         document.getElementById('gallery').appendChild(newDiv);
-                        newDiv.id="image"+i;
+                        newDiv.id="image"+index;
                         newDiv.className="image";
                         
                         //item: 照片
                         let newImage = document.createElement("img");
                         newImage.src = imgLinkArray[0]+".jpg";
-                        document.getElementById("image"+i).appendChild(newImage);
+                        document.getElementById("image"+index).appendChild(newImage);
 
                         //item: 照片描述
                         let newDescription = document.createElement("div");
-                        newDescription.textContent = spotArrayInfo[i].stitle;
-                        document.getElementById("image"+i).appendChild(newDescription);
-                        newDescription.className="imageDescripiton";
-                    }
-                    else if((i+1) % 9 == 0){
-                        
-                        let loadBtn = document.createElement("button");
-                        loadBtn.textContent = "Load More";
-                        loadBtn.setAttribute("type","button");
-                        loadBtn.id="loadBtn";
-                        loadBtn.onclick = function() { 
-                            loadBtn.style.display = "none";
-                            //continue; //Uncaught SyntaxError: Illegal continue statement: no surrounding iteration statement
-                        };
-
-                        //if (document.getElementById('loadBtn').checked){ //error - Uncaught TypeError: Cannot read properties of null (reading 'checked')
-                        //    continue; 
-                        //}
-                    
-                        document.getElementById('gallery').appendChild(loadBtn);
-                        break;
-
-                    }
+                        newDescription.textContent = spotArrayInfo[index].stitle;
+                        document.getElementById("image"+index).appendChild(newDescription);
+                        newDescription.className="imageDescripiton";      
                 }
             }
             req.send();
+        }
+        
+        //Create a button called "Load More" to load 8 more images
+        function loadMore(){
+            
+            //Create button
+            let loadBtn = document.createElement("button");
+            loadBtn.textContent = "Load More";
+            loadBtn.setAttribute("type","button");
+            loadBtn.id="loadBtn";
+            document.getElementById('bottom').appendChild(loadBtn); 
+            
+            //Create Event handler
+            let startNumber = 0;
+            let handler=function(){ 
+                //console.log('spotArray', spotArrayInfo.length)
+                startNumber=startNumber+8;
+                let count = 8 ;
+                //Calculate how many images left and query them only.
+                if (spotArrayInfo.length < startNumber+8){
+                    console.log('===== Oversize =====');
+                    diff = spotArrayInfo.length - startNumber;
+                    document.getElementById('bottom').style.display = 'none';
+                    count = diff;
+                } 
+                console.log('startNumber:',startNumber);
+                queryWebsite(startNumber, count);
+            };
+            loadBtn.addEventListener("click", handler);
+            
+        }
+
+        //Window onload function
+        window.onload=function(){
+            let startNumber = 0;
+            queryWebsite(startNumber);
+            loadMore();
         }
 
     </script>
@@ -102,6 +124,9 @@
     </div>
 
     <div class="gallery" id="gallery">
+    </div>
+
+    <div class="bottom" id="bottom">
     </div>
 
 </body>

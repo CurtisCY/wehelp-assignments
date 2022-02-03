@@ -99,10 +99,19 @@
 button{
     width:140px;
     height:40px;
-    margin: 20px;
+    margin:10px;
     border: 1px solid #D3D3D3;
     color: black;
+    vertical-align: top;
     
+}
+
+.bottom{
+    display:flex;
+    margin: 20px;
+    height: 40px;
+    justify-content: center; /*左右對齊*/
+    align-items: center; /*垂直對齊*/
 }
 
 @media (max-width: 1200px){
