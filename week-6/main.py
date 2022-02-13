@@ -75,28 +75,21 @@ def signup():
     usernameInput = request.form["username"]
     passwordInput = request.form["password"]
 
-    mycursor.execute("SELECT username FROM member")
+    mycursor.execute(f"SELECT username FROM member WHERE username='{usernameInput}'")
     myresult = mycursor.fetchall()
-    #print('myresult_list', list(myresult))
-    #print('myresult', myresult)
-    #print(nameInput, usernameInput, passwordInput)
 
-    for username in myresult:
-        usernameStr = ''.join(username)
-        #print(usernameStr)
-        #print(type(usernameStr))
-        if usernameInput == usernameStr:
-            message = "帳號已經被註冊"
-            return redirect(url_for("error", message=message))
-        else:
-            continue
+    if len(myresult) == 0:
+        sql = "INSERT INTO member (name, username, password) VALUES (%s, %s, %s)"
+        val = (nameInput, usernameInput, passwordInput)
+        mycursor.execute(sql, val)
+        mydb.commit()
+        print(mycursor.rowcount, "record inserted.")
+        return redirect("/")
+    elif len(myresult) != 0:
+        message = "帳號已經被註冊"
+        return redirect(url_for("error", message=message))
+
     
-    sql = "INSERT INTO member (name, username, password) VALUES (%s, %s, %s)"
-    val = (nameInput, usernameInput, passwordInput)
-    mycursor.execute(sql, val)
-    mydb.commit()
-    print(mycursor.rowcount, "record inserted.")
-    return redirect("/")
 
 @app.route("/logout")
 def logout():
