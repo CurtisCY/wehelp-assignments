@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask import session
 import mysql.connector
-
+import os
 
 #Connect to MySQL database
 mydb = mysql.connector.connect(
   host="localhost",
-  user="CurtisCY",
-  password="#Curtis0630",
+  user=os.getenv('SQLUSER'), #Read username/password from environment variable
+  password=os.getenv('SQLPASSWORD'),
   database="week6"
 )
 
