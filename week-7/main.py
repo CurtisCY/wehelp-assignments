@@ -52,7 +52,8 @@ def signin():
     usernameInput = request.form["username"]
     passwordInput = request.form["password"]
 
-    mycursor.execute(f"SELECT name, username, password FROM member WHERE username='{usernameInput}' AND password='{passwordInput}'")
+    # mycursor.execute(f"SELECT name, username, password FROM member WHERE username='{usernameInput}' AND password='{passwordInput}'")
+    mycursor.execute("SELECT name, username, password FROM member WHERE username=%s AND password=%s",(usernameInput,passwordInput,))
     myresult = mycursor.fetchall()
 
     
@@ -76,7 +77,8 @@ def signup():
     usernameInput = request.form["username"]
     passwordInput = request.form["password"]
 
-    mycursor.execute(f"SELECT username FROM member WHERE username='{usernameInput}'")
+    # mycursor.execute(f"SELECT username FROM member WHERE username='{usernameInput}'")
+    mycursor.execute("SELECT username FROM member WHERE username=%s",(usernameInput,))
     myresult = mycursor.fetchall()
 
     if len(myresult) == 0:
@@ -93,7 +95,8 @@ def signup():
 @app.route("/api/members")
 def querymember():
     usernameInput = request.args.get('username')
-    mycursor.execute(f"SELECT id, name, username FROM member WHERE username='{usernameInput}'")
+    #mycursor.execute(f"SELECT id, name, username FROM member WHERE username='{usernameInput}'")
+    mycursor.execute("SELECT id, name, username FROM member WHERE username=%s",(usernameInput,))
     myresult = mycursor.fetchall()
 
     if len(myresult)!=0:
