@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>MyWebsite</title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        
+        <script>
+
+        </script>
+    </head>
+    <body>
+        <div class="banner">
+            <div class="loginMessage">歡迎光臨，請註冊登入系統</div>
+        </div>
+
+        <div class="loginFormDiv">
+
+            <p class="formDescription">註冊帳號</p>
+            <form class="loginForm" action="/signup" method="POST" >
+                姓名 <input type="text" name="name"/><br/><br/>
+                帳號 <input type="text" name="username"/><br/><br/>
+                密碼 <input type="password" name="password"><br/>
+                <button>註冊</button>
+            </form>
+        </div>
+        <br/>
+        <hr/>
+        <div class="loginFormDiv">
+
+            <p class="formDescription">登入系統</p>
+            <form class="loginForm" action="/signin" method="POST" >
+                帳號 <input type="text" name="username"/><br/><br/>
+                密碼 <input type="password" name="password"><br/>
+                <button>登入</button>
+            </form>
+   
+        </div>
+    </body>
+</html>

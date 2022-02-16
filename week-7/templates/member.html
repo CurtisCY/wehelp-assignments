@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>MyWebsite</title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        
+        <script type="text/javascript">
+
+            function queryuserdata(){
+                let userName = document.getElementById("queryUserNameInput");
+                // console.log(userName.value);
+                url = "http://127.0.0.1:3000/api/members" + "?username=" + userName.value;
+                //console.log(url);
+
+                fetch(url, {
+
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+
+                }).then(function(response) {
+                        return response.json();
+                }).then(function(jsonData) {
+                    let queryResponse = document.getElementById('queryResponse');    
+                    if (jsonData.data != null){
+                        //consoljsonDatae.log(jsonData);
+                        Name = jsonData.data.name;
+                        userName = jsonData.data.username;
+                        console.log(Name, userName);
+                        queryResponse.textContent = Name + '(' + userName + ')';
+                    }else if (jsonData.data == null){
+                        queryResponse.textContent = "查無此資料";
+                    }
+                });
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class="banner">
+            <div class="loginMessage">歡迎光臨，這是會員頁</div>
+        </div>
+
+        <div class="responseMessage">
+            <p>恭喜 {{ name }} ，成功登入系統</p><br>
+            <a href="http://127.0.0.1:3000/logout" target="_self">登出系統</a>
+        </div>
+        <div class="queryUserNameDiv" id="queryUserNameDiv">
+            <p>查詢會員姓名</p>
+            <form class="queryUserForm">
+                <input type="text" id="queryUserNameInput"/>
+                <input type="button" name="search" value="查詢" onclick="queryuserdata();"/>
+                <p id="queryResponse" class="queryResponse"></p>
+            </form>
+        </div>
+    </body>
+</html>

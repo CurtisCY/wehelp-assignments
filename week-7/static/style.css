@@ -1,0 +1,67 @@
+body{
+    margin: 0px;
+}
+
+.banner{
+    display: flex; /*讓下一層次項目水平排列*/
+    justify-content: center;/*左右對齊*/
+    align-items: center; /*垂直對齊*/
+    height: 100px;
+    background-color: #003344;
+}
+
+.loginMessage{
+    font-size:30px;
+    color: white;
+}
+
+.loginFormDiv{
+    display: flex;
+    width: 260px;
+    justify-content: center; /*左右對齊*/
+    align-items: center; /*垂直對齊*/
+    flex-wrap: wrap;
+    margin: auto; /*重要! 整個<div>置中*/
+    
+}
+.formDescription{
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+    flex: none;
+    font-size:24px;
+}
+
+.loginForm{
+    flex: none;
+    width: 250px;
+    font-size:16px;
+    text-align: center;
+}
+
+form.loginForm button {
+    margin-top: 10px;
+    padding: 5px;
+    width: 60px;
+}
+
+.responseMessage{
+    margin: auto;
+    text-align: center;
+    font-size:24px;
+    font-weight: bold;
+}
+
+.queryUserNameDiv{
+    margin: auto;
+    text-align: center;
+    font-size:24px;
+    font-weight: bold;
+}
+
+.queryResponse{
+    margin: auto;
+    text-align: center;
+    font-size:24px;
+    font-weight: bold;
+}
