@@ -8,6 +8,11 @@ https://dev.mysql.com/doc/connector-python/en/connector-python-connection-poolin
 2. Connection Pool can setup maximum connection number which avoid your application exceed the allowed connection number of the database
 3. Connection Pool can check the availabily of the connection to the database and recover once the connection break.
 
+### Import mysql.connector.pooling
+```mysql
+import mysql.connector.pooling
+```
+
 ### Configure Database and create connection pool - cnxpool 
 
 ```mysql
