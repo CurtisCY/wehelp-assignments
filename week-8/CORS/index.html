@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Test CORS</title>
+        <link href="./static/style.css" rel="stylesheet" type="text/css"/>
+        
+        <script type="text/javascript">
+
+            function queryWebSite(){
+                url = "https://www.google.com/";
+                updateResponse.textContent = "連線至..." + url;
+                //console.log(url);
+                fetch(url, {
+
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+                }).then(function(response) {
+                        return response.json();
+                }).then(function(jsonData) {
+                    consoljsonDatae.log(jsonData);
+                    if (jsonData.data != null){
+                        consoljsonDatae.log(jsonData);
+                    }else if (jsonData.data == null){
+                        console.log(jsonData)
+                    }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div class="banner">
+            <div class="loginMessage">Test CORS</div>
+        </div>
+        <div class="updateUserNameDiv" id="updateUserNameDiv">
+            <p>發起 Fetch 連線</p>
+            <form class="updateForm">
+                <input type="button" name="update" value="發起" onclick="queryWebSite();"/>
+                <p id="updateResponse" class="updateResponse"></p>
+            </form>
+        </div>
+    </body>
+</html>
