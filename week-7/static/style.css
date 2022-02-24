@@ -63,5 +63,17 @@ form.loginForm button {
     margin: auto;
     text-align: center;
     font-size:24px;
+}
+
+.updateUserNameDiv{
+    margin: auto;
+    text-align: center;
+    font-size:24px;
     font-weight: bold;
+}
+
+.updateResponse{
+    margin: auto;
+    text-align: center;
+    font-size:24px;
 }

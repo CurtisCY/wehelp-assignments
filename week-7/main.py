@@ -123,6 +123,34 @@ def querymember():
     print(responseJsonData)
     return responseJsonData
 
+@app.route("/api/member", methods=["POST"])
+def updatemember():
+     if request.method == 'POST':
+        #print(request.get_json())  # parse as JSON
+        if "username" in session:
+            newNameJson = json.loads(request.get_json())
+            newNameDict = dict(newNameJson)
+            newName = newNameDict['name']
+            print(newName)
+            print(session['username'])
+            mycursor.execute("UPDATE member SET name=%s WHERE username=%s",(newName, session['username'],))
+            # mycursor.execute("SELECT id, name, username FROM member WHERE username=%s",(session['username'],))
+            myresult = mycursor.fetchall()
+            print(myresult)
+            mydb.commit()
+
+            returnMessage = {
+                "ok": True
+            }
+        
+            return returnMessage
+        elif "username" not in session:
+            returnMessage = {
+                "error": True
+            } 
+            return returnMessage
+
+
 
 @app.route("/logout")
 def logout():
