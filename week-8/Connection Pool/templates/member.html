@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>MyWebsite</title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        
+        <script type="text/javascript">
+
+            function queryuserdata(){
+                let userName = document.getElementById("queryUserNameInput");
+                // console.log(userName.value);
+                url = "http://127.0.0.1:3001/api/members" + "?username=" + userName.value;
+                //console.log(url);
+
+                fetch(url, {
+
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+
+                }).then(function(response) {
+                        return response.json();
+                }).then(function(jsonData) {
+                    let queryResponse = document.getElementById('queryResponse');    
+                    if (jsonData.data != null){
+                        //consoljsonDatae.log(jsonData);
+                        Name = jsonData.data.name;
+                        userName = jsonData.data.username;
+                        console.log(Name, userName);
+                        queryResponse.textContent = Name + '(' + userName + ')';
+                    }else if (jsonData.data == null){
+                        queryResponse.textContent = "查無此資料";
+                    }
+                });
+            }
+
+            function updateuserdata(){
+                let userName = document.getElementById('updateUserNameInput');
+                // console.log(userName.value);
+                //let url = "http://127.0.0.1:3000/api/member" + "?username=" + userName.value;
+                let url = "http://127.0.0.1:3001/api/member";
+                let newName = '{"name":"' + userName.value + '"}';
+                //console.log(newName);
+
+                fetch(url, {
+                
+                method: 'POST',
+                body: JSON.stringify(newName),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+
+                }).then(function(response) {
+                        return response.json();
+                }).then(function(jsonData) {   
+                    console.log(jsonData);
+                    if (jsonData.ok == true){
+                        updateResponse.textContent = '更新成功';
+                        loginName.textContent = userName.value;
+                    }
+                    else if(jsonData.error == true){
+                        updateResponse.textContent = '更新失敗';
+                    }
+                    console.log()
+                });
+            }
+
+        </script>
+    </head>
+    <body>
+        <div class="banner">
+            <div class="loginMessage">歡迎光臨，這是會員頁</div>
+        </div>
+
+        <div class="responseMessage">
+            <p>恭喜 <span id=loginName>{{ name }}</span>，成功登入系統</p><br>
+            <a href="http://127.0.0.1:3001/logout" target="_self">登出系統</a>
+        </div>
+        <div class="queryUserNameDiv" id="queryUserNameDiv">
+            <p>查詢會員姓名</p>
+            <form class="queryUserForm">
+                <input type="text" id="queryUserNameInput"/>
+                <input type="button" name="search" value="查詢" onclick="queryuserdata();"/>
+                <p id="queryResponse" class="queryResponse"></p>
+            </form>
+        </div>
+        <div class="updateUserNameDiv" id="updateUserNameDiv">
+            <p>更新我的姓名</p>
+            <form class="updateForm">
+                <input type="text" id="updateUserNameInput"/>
+                <input type="button" name="update" value="更新" onclick="updateuserdata();"/>
+                <p id="updateResponse" class="updateResponse"></p>
+            </form>
+        </div>
+    </body>
+</html>
