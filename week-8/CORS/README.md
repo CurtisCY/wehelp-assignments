@@ -1,5 +1,13 @@
 # Test CORS (Cross-Origin Resource sharing)
 
+While client side web broswer try to access the resource which is not the same as origin domain/protocol/port, it will create a cross-origin HTTP request.
+XMLHttpRequest and Fetch all follow the same-origin policy. The same-origin policy limit all the API can only be used in the same domain othewise they must  
+to use CORS header to query the API in different domain.
+
+Reference: https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS
+
+
+
 ## Fetch https://www.google.com/
 
 ### Error Response
