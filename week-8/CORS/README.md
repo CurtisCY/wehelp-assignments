@@ -1,8 +1,7 @@
 # Test CORS (Cross-Origin Resource sharing)
 
 While client side web broswer try to access the resource which is not the same as origin domain/protocol/port, it will create a cross-origin HTTP request.
-XMLHttpRequest and Fetch all follow the same-origin policy. The same-origin policy limit all the API can only be used in the same domain othewise they must  
-to use CORS header to query the API in different domain.
+XMLHttpRequest and Fetch all follow the same-origin policy. The same-origin policy limits all the API can only be used in the same domain othewise they must to use CORS header to query the API in different domain.
 
 Reference: https://developer.mozilla.org/zh-TW/docs/Web/HTTP/CORS
 
@@ -29,3 +28,13 @@ requested resource. If an opaque response serves your needs, set the request's m
 ```
 ### Test Result and Issue
 ![image](https://user-images.githubusercontent.com/63384830/155639123-4d69ede5-b83f-4439-8f93-8e5a17dbfa3a.png)
+
+### Remove HTTP headers inside Fetch
+```javascript
+headers: {
+  'Content-Type': 'application/json'
+}
+```
+### Test Result
+![image](https://user-images.githubusercontent.com/63384830/155650080-4713dd69-9b0b-42cf-b90a-a2a81b8ce0b0.png)
+
