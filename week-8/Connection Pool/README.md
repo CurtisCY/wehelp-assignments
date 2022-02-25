@@ -16,16 +16,15 @@ import mysql.connector.pooling
 ### Configure Database and create connection pool - cnxpool 
 
 ```mysql
-dbconfig = {
-  "host": "localhost",
-  "user": os.getenv('SQLUSER'), #Read username/password from environment variable
-  "password": os.getenv('SQLPASSWORD'),
-  "database": "week6"
-}
-
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(pool_name = "sqlCnxPool",
                                                       pool_size = 10,
                                                       **dbconfig)
+
+cnx1 = cnxpool.get_connection()
+mycursor = cnx1.cursor()
+mycursor1 = cnx1.cursor()
+mycursor2 = cnx1.cursor()
+mycursor3 = cnx1.cursor()                                             
 ```
 
 
