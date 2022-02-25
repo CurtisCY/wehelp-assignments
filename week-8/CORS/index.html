@@ -9,19 +9,20 @@
 
             function queryWebSite(){
                 url = "https://www.google.com/";
+                // url = "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json";
                 updateResponse.textContent = "連線至..." + url;
                 //console.log(url);
                 fetch(url, {
 
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                // headers: {
+                //     'Content-Type': 'application/json'
+                // }
                 }).then(function(response) {
                         return response.json();
                 }).then(function(jsonData) {
-                    consoljsonDatae.log(jsonData);
+                    console.log(jsonData);
                     if (jsonData.data != null){
-                        consoljsonDatae.log(jsonData);
+                        console.log(jsonData);
                     }else if (jsonData.data == null){
                         console.log(jsonData)
                     }

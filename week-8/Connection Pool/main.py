@@ -17,10 +17,10 @@ cnxpool = mysql.connector.pooling.MySQLConnectionPool(pool_name = "sqlCnxPool",
                                                       **dbconfig)
 
 cnx1 = cnxpool.get_connection()
-mycursor = cnx1.cursor()
-mycursor1 = cnx1.cursor()
-mycursor2 = cnx1.cursor()
-mycursor3 = cnx1.cursor()
+cnx2 = cnxpool.get_connection()
+cnx3 = cnxpool.get_connection()
+cnx4 = cnxpool.get_connection()
+
 
 #Connect to MySQL database
 # mydb = mysql.connector.connect(
@@ -70,11 +70,10 @@ def signin():
     usernameInput = request.form["username"]
     passwordInput = request.form["password"]
 
+    mycursor = cnx1.cursor()
     # mycursor.execute(f"SELECT name, username, password FROM member WHERE username='{usernameInput}' AND password='{passwordInput}'")
     mycursor.execute("SELECT name, username, password FROM member WHERE username=%s AND password=%s",(usernameInput,passwordInput,))
     myresult = mycursor.fetchall()
-
-    
 
     if len(myresult)==0:
             message = "帳號、或密碼輸入錯誤"
@@ -95,6 +94,7 @@ def signup():
     usernameInput = request.form["username"]
     passwordInput = request.form["password"]
 
+    mycursor = cnx2.cursor()
     # mycursor.execute(f"SELECT username FROM member WHERE username='{usernameInput}'")
     mycursor.execute("SELECT username FROM member WHERE username=%s",(usernameInput,))
     myresult = mycursor.fetchall()
@@ -104,7 +104,7 @@ def signup():
         val = (nameInput, usernameInput, passwordInput)
         mycursor.execute(sql, val)
         # mydb.commit()
-        cnx1.commit()
+        cnx2.commit()
         print(mycursor.rowcount, "record inserted.")
         return redirect("/")
     elif len(myresult) != 0:
@@ -114,9 +114,11 @@ def signup():
 @app.route("/api/members")
 def querymember():
     usernameInput = request.args.get('username')
+    
+    mycursor = cnx3.cursor()
     #mycursor.execute(f"SELECT id, name, username FROM member WHERE username='{usernameInput}'")
-    mycursor1.execute("SELECT id, name, username FROM member WHERE username=%s",(usernameInput,))
-    myresult = mycursor1.fetchall()
+    mycursor.execute("SELECT id, name, username FROM member WHERE username=%s",(usernameInput,))
+    myresult = mycursor.fetchall()
 
     if len(myresult)!=0:
         userData = list(myresult[0])
@@ -152,11 +154,13 @@ def updatemember():
             newName = newNameDict['name']
             print(newName)
             print(session['username'])
-            mycursor2.execute("UPDATE member SET name=%s WHERE username=%s",(newName, session['username'],))
+
+            mycursor = cnx4.cursor()
+            mycursor.execute("UPDATE member SET name=%s WHERE username=%s",(newName, session['username'],))
             # mycursor.execute("SELECT id, name, username FROM member WHERE username=%s",(session['username'],))
-            myresult = mycursor2.fetchall()
+            myresult = mycursor.fetchall()
             print(myresult)
-            cnx1.commit()
+            cnx4.commit()
 
             returnMessage = {
                 "ok": True
@@ -176,4 +180,4 @@ def logout():
     session.pop("username", None)
     return redirect(url_for("index"))
 
-app.run(port=3000)
+app.run(port=3001)
