@@ -18,6 +18,9 @@ cnxpool = mysql.connector.pooling.MySQLConnectionPool(pool_name = "sqlCnxPool",
 
 cnx1 = cnxpool.get_connection()
 mycursor = cnx1.cursor()
+mycursor1 = cnx1.cursor()
+mycursor2 = cnx1.cursor()
+mycursor3 = cnx1.cursor()
 
 #Connect to MySQL database
 # mydb = mysql.connector.connect(
@@ -112,8 +115,8 @@ def signup():
 def querymember():
     usernameInput = request.args.get('username')
     #mycursor.execute(f"SELECT id, name, username FROM member WHERE username='{usernameInput}'")
-    mycursor.execute("SELECT id, name, username FROM member WHERE username=%s",(usernameInput,))
-    myresult = mycursor.fetchall()
+    mycursor1.execute("SELECT id, name, username FROM member WHERE username=%s",(usernameInput,))
+    myresult = mycursor1.fetchall()
 
     if len(myresult)!=0:
         userData = list(myresult[0])
@@ -149,9 +152,9 @@ def updatemember():
             newName = newNameDict['name']
             print(newName)
             print(session['username'])
-            mycursor.execute("UPDATE member SET name=%s WHERE username=%s",(newName, session['username'],))
+            mycursor2.execute("UPDATE member SET name=%s WHERE username=%s",(newName, session['username'],))
             # mycursor.execute("SELECT id, name, username FROM member WHERE username=%s",(session['username'],))
-            myresult = mycursor.fetchall()
+            myresult = mycursor2.fetchall()
             print(myresult)
             cnx1.commit()
 
@@ -173,4 +176,4 @@ def logout():
     session.pop("username", None)
     return redirect(url_for("index"))
 
-app.run(port=3001)
+app.run(port=3000)
