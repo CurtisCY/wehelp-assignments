@@ -1,5 +1,5 @@
 # Learn the SQL Connection Pool
-
+Cancel changes
 ## Follow the step below to create SQL connection pool:  
 https://dev.mysql.com/doc/connector-python/en/connector-python-connection-pooling.html
 
@@ -16,20 +16,29 @@ import mysql.connector.pooling
 ### Configure Database and create connection pool - cnxpool 
 
 ```mysql
+dbconfig = {
+  "host": "localhost",
+  "user": os.getenv('SQLUSER'), #Read username/password from environment variable
+  "password": os.getenv('SQLPASSWORD'),
+  "database": "week6"
+}
+
 cnxpool = mysql.connector.pooling.MySQLConnectionPool(pool_name = "sqlCnxPool",
                                                       pool_size = 10,
                                                       **dbconfig)
 
 cnx1 = cnxpool.get_connection()
-mycursor = cnx1.cursor()
-mycursor1 = cnx1.cursor()
-mycursor2 = cnx1.cursor()
-mycursor3 = cnx1.cursor()                                             
+cnx2 = cnxpool.get_connection()
+cnx3 = cnxpool.get_connection()
+cnx4 = cnxpool.get_connection()
+                                           
 ```
 
 
 ### Establish a connection to connection pool and call cursor() function
 ```mysql
-cnx1 = cnxpool.get_connection()
 mycursor = cnx1.cursor()
+# mycursor.execute(f"SELECT name, username, password FROM member WHERE username='{usernameInput}' AND password='{passwordInput}'")
+mycursor.execute("SELECT name, username, password FROM member WHERE username=%s AND password=%s",(usernameInput,passwordInput,))
+myresult = mycursor.fetchall()
 ```
